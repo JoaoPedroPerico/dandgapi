@@ -1,7 +1,9 @@
 package com.dangd.dandg.api;
 
 import com.dangd.dandg.domain.dto.AtributoDTO;
+import com.dangd.dandg.domain.dto.PericiaDTO;
 import com.dangd.dandg.domain.services.AtributoService;
+import com.dangd.dandg.domain.services.PericiaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,22 +14,22 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/atributos")
-public class AtributosController {
+@RequestMapping("api/v1/pericias")
+public class PericiasController {
     @Autowired
-    private AtributoService service = new AtributoService();
+    private PericiaService service = new PericiaService();
 
     @GetMapping
     public ResponseEntity get(){
-        return ResponseEntity.ok(service.getAtributos());
+        return ResponseEntity.ok(service.getPericias());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable("id") Integer id){
-        Optional<AtributoDTO> atributo = service.getAtributoById(id);
+        Optional<PericiaDTO> pericia = service.getPericiaById(id);
 
-        return atributo.isPresent() ?
-                ResponseEntity.ok(atributo.get()) :
+        return pericia.isPresent() ?
+                ResponseEntity.ok(pericia.get()) :
                 ResponseEntity.notFound().build();
     }
 }
