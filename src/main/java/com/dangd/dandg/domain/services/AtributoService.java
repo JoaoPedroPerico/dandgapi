@@ -31,4 +31,12 @@ public class AtributoService {
         }
         return Optional.empty();
     }
+
+    public Optional<AtributoDTO> getAtributoByAbreviacaoAtributo(String abreviacaoAtributo) {
+        Optional<Atributo> atributo = rep.findByAbreviacaoAtributo(abreviacaoAtributo);
+        if(atributo.isPresent()){
+            return Optional.of(AtributoDTO.create(atributo.get()));
+        }
+        return Optional.empty();
+    }
 }

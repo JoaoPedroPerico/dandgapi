@@ -30,4 +30,13 @@ public class AtributosController {
                 ResponseEntity.ok(atributo.get()) :
                 ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/abreviacao/{abreviacaoAtributo}")
+    public ResponseEntity getById(@PathVariable("abreviacaoAtributo") String abreviacaoAtributo){
+        Optional<AtributoDTO> atributo = service.getAtributoByAbreviacaoAtributo(abreviacaoAtributo);
+
+        return atributo.isPresent() ?
+                ResponseEntity.ok(atributo.get()) :
+                ResponseEntity.notFound().build();
+    }
 }
