@@ -1,9 +1,7 @@
 package com.dangd.dandg.api;
 
 import com.dangd.dandg.domain.dto.IdiomaDTO;
-import com.dangd.dandg.domain.dto.TendenciaDTO;
 import com.dangd.dandg.domain.services.IdiomaService;
-import com.dangd.dandg.domain.services.TendenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
