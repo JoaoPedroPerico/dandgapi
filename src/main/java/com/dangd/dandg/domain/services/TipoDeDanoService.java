@@ -1,8 +1,6 @@
 package com.dangd.dandg.domain.services;
 
-import com.dangd.dandg.domain.classes.Idioma;
 import com.dangd.dandg.domain.classes.TipoDeDano;
-import com.dangd.dandg.domain.dto.IdiomaDTO;
 import com.dangd.dandg.domain.dto.TipoDeDanoDTO;
 import com.dangd.dandg.domain.reps.TipoDeDanoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

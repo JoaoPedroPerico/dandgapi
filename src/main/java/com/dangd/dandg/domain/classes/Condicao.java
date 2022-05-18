@@ -3,14 +3,14 @@ package com.dangd.dandg.domain.classes;
 import lombok.*;
 import javax.persistence.*;
 
-@Entity(name = "tiposDeDano")
+@Entity(name = "condicoes")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TipoDeDano {
+public class Condicao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idTipoDeDano;
-    private String nomeTipoDeDano;
-    private String exemploTipoDeDano;
+    private Integer idCondicao;
+    private String nomeCondicao;
+    private String descricaoCondicao;
 }

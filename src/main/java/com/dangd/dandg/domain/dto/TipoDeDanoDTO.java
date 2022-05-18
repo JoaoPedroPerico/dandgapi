@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 
 @Data
 public class TipoDeDanoDTO {
-    private Integer idTiposDeDano;
+    private Integer idTipoDeDano;
     private String nomeTipoDeDano;
     private String exemploTipoDeDano;
 
