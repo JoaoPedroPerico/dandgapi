@@ -24,10 +24,7 @@ public class CondicoesController {
 
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable("id") Integer id){
-        Optional<CondicaoDTO> condicaoDTO = service.getCondicaoById(id);
-
-        return condicaoDTO.isPresent() ?
-                ResponseEntity.ok(condicaoDTO.get()) :
-                ResponseEntity.notFound().build();
+        CondicaoDTO condicaoDTO = service.getCondicaoById(id);
+        return ResponseEntity.ok(condicaoDTO);
     }
 }

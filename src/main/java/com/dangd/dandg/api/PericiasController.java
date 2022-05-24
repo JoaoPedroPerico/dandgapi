@@ -28,11 +28,8 @@ public class PericiasController {
 
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable("id") Integer id){
-        Optional<PericiaDTO> pericia = service.getPericiaById(id);
-
-        return pericia.isPresent() ?
-                ResponseEntity.ok(pericia.get()) :
-                ResponseEntity.notFound().build();
+        PericiaDTO pericia = service.getPericiaById(id);
+        return ResponseEntity.ok(pericia);
     }
 
     @GetMapping("/atributo/{atributo}")

@@ -25,11 +25,8 @@ public class CriaturasController {
 
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable("id") Integer id) {
-        Optional<CriaturaDTO> criatura = service.getCriaturaById(id);
-
-        return criatura.isPresent() ?
-                ResponseEntity.ok(criatura.get()) :
-                ResponseEntity.notFound().build();
+        CriaturaDTO criatura = service.getCriaturaById(id);
+        return ResponseEntity.ok(criatura);
     }
 
     @GetMapping("/tipo/{tipoCriatura}")
@@ -43,13 +40,9 @@ public class CriaturasController {
 
     @PostMapping
     public ResponseEntity post(@RequestBody Criatura criatura) {
-        try {
-            CriaturaDTO temp = service.create(criatura);
-            URI location = getUri(criatura.getIdCriatura());
-            return ResponseEntity.created(location).build();
-        } catch (Exception ex){
-            return ResponseEntity.badRequest().build();
-        }
+        CriaturaDTO temp = service.create(criatura);
+        URI location = getUri(criatura.getIdCriatura());
+        return ResponseEntity.created(location).build();
     }
 
     private URI getUri(Integer id) {
@@ -58,16 +51,13 @@ public class CriaturasController {
 
     @PutMapping("/{id}")
     public ResponseEntity put(@PathVariable("id") Integer id, @RequestBody Criatura criatura){
-        try {
-            CriaturaDTO temp = service.update(criatura, id);
-            return temp != null ? ResponseEntity.ok(temp) : ResponseEntity.notFound().build();
-        } catch (Exception ex){
-            return ResponseEntity.badRequest().build();
-        }
+        CriaturaDTO temp = service.update(criatura, id);
+        return temp != null ? ResponseEntity.ok(temp) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable("id") Integer id){
-        return service.delete(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+        service.delete(id);
+        return ResponseEntity.ok().build();
     }
 }

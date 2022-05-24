@@ -2,6 +2,7 @@ package com.dangd.dandg;
 
 import com.dangd.dandg.domain.classes.Criatura;
 import com.dangd.dandg.domain.dto.CriaturaDTO;
+import com.dangd.dandg.domain.exception.ObjectNotFoundException;
 import com.dangd.dandg.domain.services.CriaturaService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,17 +36,22 @@ public class CriaturasServiceTest {
 		assertNotNull(id);
 
 		//Executa o get do id capturado anteriormente e verifica se é presente
-		Optional<CriaturaDTO> optional = criaturaService.getCriaturaById(id);
-		assertTrue(optional.isPresent());
+		criaturaDTO = criaturaService.getCriaturaById(id);
+		assertNotNull(criaturaDTO);
 
 		//Compara se os dados do get são os mesmos que do objeto teste montado no inicio
-		criaturaDTO = optional.get();
 		assertEquals(criatura.getNomeCriatura(), criaturaDTO.getNomeCriatura());
 		assertEquals(criatura.getTipoCriatura(), criaturaDTO.getTipoCriatura());
 
 		//Deleta pelo id e confere se não existe mais
 		criaturaService.delete(id);
-		assertFalse(criaturaService.getCriaturaById(id).isPresent());
+		try{
+			criaturaService.getCriaturaById(id);
+			fail("Criatura não foi excluida corretamente");
+		}catch(ObjectNotFoundException exception){
+			//OK
+		}
+
 	}
 
 	@Test

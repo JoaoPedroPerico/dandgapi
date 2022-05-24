@@ -2,6 +2,7 @@ package com.dangd.dandg.domain.services;
 
 import com.dangd.dandg.domain.classes.Tendencia;
 import com.dangd.dandg.domain.dto.TendenciaDTO;
+import com.dangd.dandg.domain.exception.ObjectNotFoundException;
 import com.dangd.dandg.domain.reps.TendenciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,19 +25,13 @@ public class TendenciaService {
         return tendenciasDTO;
     }
 
-    public Optional<TendenciaDTO> getTendenciaById(Integer id) {
+    public TendenciaDTO getTendenciaById(Integer id) {
         Optional<Tendencia> tendencia = rep.findById(id);
-        if(tendencia.isPresent()){
-            return Optional.of(TendenciaDTO.create(tendencia.get()));
-        }
-        return Optional.empty();
+        return tendencia.map(TendenciaDTO::create).orElseThrow(()-> new ObjectNotFoundException("Tendencia não encontrada"));
     }
 
-    public Optional<TendenciaDTO> getTendenciaBySigla(String sigla) {
+    public TendenciaDTO getTendenciaBySigla(String sigla) {
         Optional<Tendencia> tendencia = rep.findByAbreviacaoTendencia(sigla);
-        if(tendencia.isPresent()){
-            return Optional.of(TendenciaDTO.create(tendencia.get()));
-        }
-        return Optional.empty();
+        return tendencia.map(TendenciaDTO::create).orElseThrow(()-> new ObjectNotFoundException("Tendencia não encontrada"));
     }
 }

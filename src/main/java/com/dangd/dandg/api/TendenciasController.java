@@ -25,19 +25,13 @@ public class TendenciasController {
 
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable("id") Integer id){
-        Optional<TendenciaDTO> tendencia = service.getTendenciaById(id);
-
-        return tendencia.isPresent() ?
-                ResponseEntity.ok(tendencia.get()) :
-                ResponseEntity.notFound().build();
+        TendenciaDTO tendencia = service.getTendenciaById(id);
+        return ResponseEntity.ok(tendencia);
     }
 
     @GetMapping("/abreviacao/{sigla}")
     public ResponseEntity getBySigla(@PathVariable("sigla") String sigla){
-        Optional<TendenciaDTO> tendencia = service.getTendenciaBySigla(sigla);
-
-        return tendencia.isPresent() ?
-                ResponseEntity.ok(tendencia.get()) :
-                ResponseEntity.notFound().build();
+        TendenciaDTO tendencia = service.getTendenciaBySigla(sigla);
+        return ResponseEntity.ok(tendencia);
     }
 }

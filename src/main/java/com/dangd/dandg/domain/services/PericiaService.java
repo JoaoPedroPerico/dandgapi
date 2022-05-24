@@ -4,6 +4,7 @@ import com.dangd.dandg.domain.classes.Atributo;
 import com.dangd.dandg.domain.classes.Pericia;
 import com.dangd.dandg.domain.dto.AtributoDTO;
 import com.dangd.dandg.domain.dto.PericiaDTO;
+import com.dangd.dandg.domain.exception.ObjectNotFoundException;
 import com.dangd.dandg.domain.reps.AtributoRepository;
 import com.dangd.dandg.domain.reps.PericiaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,9 @@ public class PericiaService {
         return periciasDTO;
     }
 
-    public Optional<PericiaDTO> getPericiaById(Integer id) {
+    public PericiaDTO getPericiaById(Integer id) {
         Optional<Pericia> pericia = periciaRepository.findById(id);
-        if(pericia.isPresent()){
-            return Optional.of(PericiaDTO.create(pericia.get()));
-        }
-        return Optional.empty();
+        return pericia.map(PericiaDTO::create).orElseThrow(()-> new ObjectNotFoundException("Perícia não encontrada"));
     }
 
     public List<PericiaDTO> getPericiasByModificador(String abreviacaoAtributo) {

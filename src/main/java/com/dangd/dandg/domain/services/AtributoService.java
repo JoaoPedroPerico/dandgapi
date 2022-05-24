@@ -2,6 +2,7 @@ package com.dangd.dandg.domain.services;
 
 import com.dangd.dandg.domain.classes.Atributo;
 import com.dangd.dandg.domain.dto.AtributoDTO;
+import com.dangd.dandg.domain.exception.ObjectNotFoundException;
 import com.dangd.dandg.domain.reps.AtributoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,19 +25,13 @@ public class AtributoService {
         return atributosDTO;
     }
 
-    public Optional<AtributoDTO> getAtributoById(Integer id) {
+    public AtributoDTO getAtributoById(Integer id) {
         Optional<Atributo> atributo = rep.findById(id);
-        if(atributo.isPresent()){
-            return Optional.of(AtributoDTO.create(atributo.get()));
-        }
-        return Optional.empty();
+        return atributo.map(AtributoDTO::create).orElseThrow(()-> new ObjectNotFoundException("Atributo não encontrado"));
     }
 
-    public Optional<AtributoDTO> getAtributoByAbreviacaoAtributo(String abreviacaoAtributo) {
+    public AtributoDTO getAtributoByAbreviacaoAtributo(String abreviacaoAtributo) {
         Optional<Atributo> atributo = rep.findByAbreviacaoAtributo(abreviacaoAtributo);
-        if(atributo.isPresent()){
-            return Optional.of(AtributoDTO.create(atributo.get()));
-        }
-        return Optional.empty();
+        return atributo.map(AtributoDTO::create).orElseThrow(()-> new ObjectNotFoundException("Atributo não encontrado"));
     }
 }

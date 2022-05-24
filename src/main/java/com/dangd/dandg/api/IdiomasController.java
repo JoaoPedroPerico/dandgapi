@@ -24,10 +24,7 @@ public class IdiomasController {
 
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable("id") Integer id){
-        Optional<IdiomaDTO> idioma = service.getIdiomaById(id);
-
-        return idioma.isPresent() ?
-                ResponseEntity.ok(idioma.get()) :
-                ResponseEntity.notFound().build();
+        IdiomaDTO idioma = service.getIdiomaById(id);
+        return ResponseEntity.ok(idioma);
     }
 }

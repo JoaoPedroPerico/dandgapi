@@ -2,6 +2,7 @@ package com.dangd.dandg.domain.services;
 
 import com.dangd.dandg.domain.classes.Condicao;
 import com.dangd.dandg.domain.dto.CondicaoDTO;
+import com.dangd.dandg.domain.exception.ObjectNotFoundException;
 import com.dangd.dandg.domain.reps.CondicaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,11 +25,8 @@ public class CondicaoService {
         return condicoesDTO;
     }
 
-    public Optional<CondicaoDTO> getCondicaoById(Integer id) {
+    public CondicaoDTO getCondicaoById(Integer id) {
         Optional<Condicao> condicao = rep.findById(id);
-        if(condicao.isPresent()){
-            return Optional.of(CondicaoDTO.create(condicao.get()));
-        }
-        return Optional.empty();
+        return condicao.map(CondicaoDTO::create).orElseThrow(()-> new ObjectNotFoundException("Condição não encontrada"));
     }
 }

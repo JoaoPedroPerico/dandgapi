@@ -24,10 +24,7 @@ public class TiposDeDanoController {
 
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable("id") Integer id){
-        Optional<TipoDeDanoDTO> tipoDeDanoDTO = service.getTipoDeDanoById(id);
-
-        return tipoDeDanoDTO.isPresent() ?
-                ResponseEntity.ok(tipoDeDanoDTO.get()) :
-                ResponseEntity.notFound().build();
+        TipoDeDanoDTO tipoDeDanoDTO = service.getTipoDeDanoById(id);
+        return ResponseEntity.ok(tipoDeDanoDTO);
     }
 }

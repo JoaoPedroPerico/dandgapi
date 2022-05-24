@@ -2,6 +2,7 @@ package com.dangd.dandg.domain.services;
 
 import com.dangd.dandg.domain.classes.Criatura;
 import com.dangd.dandg.domain.dto.CriaturaDTO;
+import com.dangd.dandg.domain.exception.ObjectNotFoundException;
 import com.dangd.dandg.domain.reps.CriaturaRepository;
 import org.modelmapper.internal.util.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,9 @@ public class CriaturaService {
         return criaturasDTO;
     }
 
-    public Optional<CriaturaDTO> getCriaturaById(Integer id) {
+    public CriaturaDTO getCriaturaById(Integer id) {
         Optional<Criatura> criatura = rep.findById(id);
-        if(criatura.isPresent()){
-            return Optional.of(CriaturaDTO.create(criatura.get()));
-        }
-        return Optional.empty();
+        return criatura.map(CriaturaDTO::create).orElseThrow(()-> new ObjectNotFoundException("Criatura não encontrada"));
     }
 
     public List<CriaturaDTO> getCriaturasByTipoCriatura(String tipoCriatura) {
@@ -62,13 +60,7 @@ public class CriaturaService {
         }
     }
 
-    public boolean delete(Integer id) {
-        Assert.notNull(id, "Não foi possível deletar o registro");
-        Optional<Criatura> criatura = rep.findById(id);
-        if(criatura.isPresent()){
-            rep.deleteById(id);
-            return true;
-        }
-        return false;
+    public void delete(Integer id) {
+        rep.deleteById(id);
     }
 }

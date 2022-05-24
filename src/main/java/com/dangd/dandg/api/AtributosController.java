@@ -24,19 +24,13 @@ public class AtributosController {
 
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable("id") Integer id){
-        Optional<AtributoDTO> atributo = service.getAtributoById(id);
-
-        return atributo.isPresent() ?
-                ResponseEntity.ok(atributo.get()) :
-                ResponseEntity.notFound().build();
+        AtributoDTO atributo = service.getAtributoById(id);
+        return ResponseEntity.ok(atributo);
     }
 
     @GetMapping("/abreviacao/{abreviacaoAtributo}")
     public ResponseEntity getById(@PathVariable("abreviacaoAtributo") String abreviacaoAtributo){
-        Optional<AtributoDTO> atributo = service.getAtributoByAbreviacaoAtributo(abreviacaoAtributo);
-
-        return atributo.isPresent() ?
-                ResponseEntity.ok(atributo.get()) :
-                ResponseEntity.notFound().build();
+        AtributoDTO atributo = service.getAtributoByAbreviacaoAtributo(abreviacaoAtributo);
+        return ResponseEntity.ok(atributo);
     }
 }
