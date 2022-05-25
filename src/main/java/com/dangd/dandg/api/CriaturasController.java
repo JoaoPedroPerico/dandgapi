@@ -5,6 +5,7 @@ import com.dangd.dandg.domain.services.CriaturaService;
 import com.dangd.dandg.domain.dto.CriaturaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -39,6 +40,7 @@ public class CriaturasController {
     }
 
     @PostMapping
+    @Secured({"ROLE_ADMIN"})
     public ResponseEntity post(@RequestBody Criatura criatura) {
         CriaturaDTO temp = service.create(criatura);
         URI location = getUri(criatura.getIdCriatura());
@@ -50,12 +52,14 @@ public class CriaturasController {
     }
 
     @PutMapping("/{id}")
+    @Secured({"ROLE_ADMIN"})
     public ResponseEntity put(@PathVariable("id") Integer id, @RequestBody Criatura criatura){
         CriaturaDTO temp = service.update(criatura, id);
         return temp != null ? ResponseEntity.ok(temp) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
+    @Secured({"ROLE_ADMIN"})
     public ResponseEntity delete(@PathVariable("id") Integer id){
         service.delete(id);
         return ResponseEntity.ok().build();
