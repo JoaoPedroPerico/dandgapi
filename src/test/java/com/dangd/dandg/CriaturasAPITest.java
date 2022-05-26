@@ -19,11 +19,11 @@ public class CriaturasAPITest {
     protected TestRestTemplate rest;
 
     private ResponseEntity<CriaturaDTO> getCriatura(String url) {
-        return rest.getForEntity(url, CriaturaDTO.class);
+        return rest.withBasicAuth("user", "user").getForEntity(url, CriaturaDTO.class);
     }
 
     private ResponseEntity<List<CriaturaDTO>> getCriaturas(String url) {
-        return rest.exchange(
+        return rest.withBasicAuth("user", "user").exchange(
                 url,
                 HttpMethod.GET,
                 null,
@@ -63,7 +63,7 @@ public class CriaturasAPITest {
     public void testSaveDelete() {
         Criatura criatura = new Criatura(null, "Maykon", "gigante");
 
-        ResponseEntity response = rest.postForEntity("/api/v1/criaturas", criatura, null);
+        ResponseEntity response = rest.withBasicAuth("dungeonmaster", "dungeonmaster").postForEntity("/api/v1/criaturas", criatura, null);
         System.out.println(response);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -73,7 +73,7 @@ public class CriaturasAPITest {
         assertEquals("Maykon", getCriatura(location).getBody().getNomeCriatura());
         assertEquals("gigante", getCriatura(location).getBody().getTipoCriatura());
 
-        rest.delete(location);
+        rest.withBasicAuth("dungeonmaster", "dungeonmaster").delete(location);
         assertEquals(HttpStatus.NOT_FOUND, getCriatura(location).getStatusCode());
     }
 }
