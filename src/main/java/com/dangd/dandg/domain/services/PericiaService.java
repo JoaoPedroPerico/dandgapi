@@ -2,7 +2,6 @@ package com.dangd.dandg.domain.services;
 
 import com.dangd.dandg.domain.classes.Atributo;
 import com.dangd.dandg.domain.classes.Pericia;
-import com.dangd.dandg.domain.dto.AtributoDTO;
 import com.dangd.dandg.domain.dto.PericiaDTO;
 import com.dangd.dandg.domain.exception.ObjectNotFoundException;
 import com.dangd.dandg.domain.reps.AtributoRepository;
@@ -43,6 +42,8 @@ public class PericiaService {
             for(Pericia pericia : pericias){
                 periciasDTO.add(PericiaDTO.create(pericia));
             }
+        }else{
+            throw new ObjectNotFoundException("Atributo não encontrado");
         }
         return periciasDTO;
     }
