@@ -14,8 +14,5 @@ public class Talento implements Serializable {
     private Integer idTalento;
     private String nomeTalento;
     private String descricaoTalento;
-    private Integer valorMinimoAtributo;
-    @ManyToOne
-    @JoinColumn(name = "fkAtributo")
-    private Atributo atributo;
+    private String preReqTalento;
 }

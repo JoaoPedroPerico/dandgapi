@@ -11,6 +11,8 @@ public class AtributoDTO {
     private String abreviacaoAtributo;
     private String tomateAtributo;
     private String descricaoAtributo;
+    private String testesDoAtributo;
+    private String descricaoComplementar;
 
     public static AtributoDTO create(Atributo atributo){
         ModelMapper modelMapper = new ModelMapper();

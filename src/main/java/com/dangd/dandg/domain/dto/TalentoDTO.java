@@ -10,8 +10,7 @@ public class TalentoDTO {
     private Integer idTalento;
     private String nomeTalento;
     private String descricaoTalento;
-    private Integer valorMinimoAtributo;
-    private Atributo atributo;
+    private String preReqTalento;
 
     public static TalentoDTO create(Talento talento){
         ModelMapper modelMapper = new ModelMapper();

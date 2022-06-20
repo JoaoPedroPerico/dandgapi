@@ -15,4 +15,6 @@ public class Atributo {
     private String abreviacaoAtributo;
     private String tomateAtributo;
     private String descricaoAtributo;
+    private String testesDoAtributo;
+    private String descricaoComplementar;
 }
