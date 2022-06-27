@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 
-@Entity(name = "tiposDeArmas")
+@Entity(name = "tiposDeArma")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
