@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity(name = "armas")
 @Data
@@ -25,4 +26,9 @@ public class Arma implements Serializable {
     @ManyToOne
     @JoinColumn(name = "fkTipoDeArma")
     private TipoDeArma tipoDeArma;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "propriedadesArmas_armas",
+            joinColumns = @JoinColumn(name = "fkArma", referencedColumnName = "idArma"),
+            inverseJoinColumns = @JoinColumn(name = "fkPropriedadeArma", referencedColumnName = "idPropriedadeArma"))
+    private List<PropriedadeArma> propriedadesArma;
 }
