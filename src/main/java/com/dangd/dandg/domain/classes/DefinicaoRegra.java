@@ -10,14 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 
-@Entity(name = "definicoes")
+@Entity(name = "definicoesERegras")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Definicao implements Serializable {
+public class DefinicaoRegra implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDefinicao;
-    private String nomeDefinicao;
-    private String descricaoDefinicao;
+    private Integer idDefReg;
+    private String nomeDefReg;
+    private String descricaoDefReg;
 }

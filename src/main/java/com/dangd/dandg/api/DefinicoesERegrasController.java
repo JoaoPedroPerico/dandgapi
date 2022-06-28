@@ -1,9 +1,7 @@
 package com.dangd.dandg.api;
 
-import com.dangd.dandg.domain.dto.DefinicaoDTO;
-import com.dangd.dandg.domain.dto.RegraDTO;
-import com.dangd.dandg.domain.services.DefinicaoService;
-import com.dangd.dandg.domain.services.RegraService;
+import com.dangd.dandg.domain.dto.DefinicaoRegraDTO;
+import com.dangd.dandg.domain.services.DefinicaoRegraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/v1/definicoes")
-public class DefinicoesController {
+@RequestMapping("api/v1/definicoesERegras")
+public class DefinicoesERegrasController {
     @Autowired
-    private DefinicaoService service = new DefinicaoService();
+    private DefinicaoRegraService service = new DefinicaoRegraService();
 
     @GetMapping
     public ResponseEntity get(){
-        return ResponseEntity.ok(service.getDefinicoes());
+        return ResponseEntity.ok(service.getDefinicoesERegras());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable("id") Integer id){
-        DefinicaoDTO definicaoDTO = service.getDefinicaoById(id);
-        return ResponseEntity.ok(definicaoDTO);
+        DefinicaoRegraDTO definicaoRegraDTO = service.getDefinicaoRegraById(id);
+        return ResponseEntity.ok(definicaoRegraDTO);
     }
 }
