@@ -1,3 +1,4 @@
+/*
 package com.dangd.dandg;
 
 import com.dangd.dandg.domain.classes.Criatura;
@@ -77,3 +78,4 @@ public class CriaturasAPITest {
         assertEquals(HttpStatus.NOT_FOUND, getCriatura(location).getStatusCode());
     }
 }
+*/
