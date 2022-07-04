@@ -1,7 +1,9 @@
 package com.dangd.dandg.domain.classes;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "criaturas")
 @Data
@@ -56,12 +58,16 @@ public class Criatura {
     private String sentidos;
     private String idiomas;
     private String pericias;
-    private String tracosEspeciais;
-    private String acoes;
     private String ataquesMultiplos;
     private String reacoes;
     private String equipamento;
     private String acoesLendarias;
     private String acoesDeCovil;
     private String efeitosRegionais;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "criatura")
+    private List<AcaoCriatura> acoesCriatura;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "criatura")
+    private List<TracoEspecial> tracosEspeciais;
 }

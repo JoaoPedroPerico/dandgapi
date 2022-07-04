@@ -4,6 +4,8 @@ import com.dangd.dandg.domain.classes.*;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 
+import java.util.List;
+
 @Data
 public class CriaturaDTO {
     private Integer idCriatura;
@@ -42,14 +44,14 @@ public class CriaturaDTO {
     private String sentidos;
     private String idiomas;
     private String pericias;
-    private String tracosEspeciais;
-    private String acoes;
     private String ataquesMultiplos;
     private String reacoes;
     private String equipamento;
     private String acoesLendarias;
     private String acoesDeCovil;
     private String efeitosRegionais;
+    private List<AcaoCriatura> acoesCriatura;
+    private List<TracoEspecial> tracosEspeciais;
 
     public static CriaturaDTO create(Criatura criatura){
         ModelMapper modelMapper = new ModelMapper();
