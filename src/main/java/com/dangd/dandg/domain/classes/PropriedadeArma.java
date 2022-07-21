@@ -18,6 +18,6 @@ public class PropriedadeArma implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPropriedadeArma;
-    private String nomePorpriedadeArma;
+    private String nomePropriedadeArma;
     private String descricaoPropriedadeArma;
 }

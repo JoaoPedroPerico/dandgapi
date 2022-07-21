@@ -7,7 +7,7 @@ import org.modelmapper.ModelMapper;
 @Data
 public class PropriedadeArmaDTO {
     private Integer idPropriedadeArma;
-    private String nomePorpriedadeArma;
+    private String nomePropriedadeArma;
     private String descricaoPropriedadeArma;
 
     public static PropriedadeArmaDTO create(PropriedadeArma propriedadeArma){

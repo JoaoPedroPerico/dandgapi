@@ -44,7 +44,6 @@ public class CriaturaDTO {
     private String sentidos;
     private String idiomas;
     private String pericias;
-    private String ataquesMultiplos;
     private String reacoes;
     private String equipamento;
     private String acoesLendarias;
@@ -52,6 +51,7 @@ public class CriaturaDTO {
     private String efeitosRegionais;
     private List<AcaoCriatura> acoesCriatura;
     private List<TracoEspecial> tracosEspeciais;
+    private List<AcaoLendariaCriatura> acoesLendariasCriatura;
 
     public static CriaturaDTO create(Criatura criatura){
         ModelMapper modelMapper = new ModelMapper();
