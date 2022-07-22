@@ -42,7 +42,6 @@ public class CriaturaDTO {
     private String imunidadesDano;
     private String imunidadesCondicao;
     private String sentidos;
-    private String idiomas;
     private String pericias;
     private String reacoes;
     private String equipamento;
@@ -52,6 +51,7 @@ public class CriaturaDTO {
     private List<AcaoCriatura> acoesCriatura;
     private List<TracoEspecial> tracosEspeciais;
     private List<AcaoLendariaCriatura> acoesLendariasCriatura;
+    private List<Idioma> idiomas;
 
     public static CriaturaDTO create(Criatura criatura){
         ModelMapper modelMapper = new ModelMapper();

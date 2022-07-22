@@ -56,7 +56,6 @@ public class Criatura {
     private String imunidadesDano;
     private String imunidadesCondicao;
     private String sentidos;
-    private String idiomas;
     private String pericias;
     private String reacoes;
     private String equipamento;
@@ -72,4 +71,9 @@ public class Criatura {
     @JsonManagedReference
     @OneToMany(mappedBy = "criatura")
     private List<AcaoLendariaCriatura> acoesLendariasCriatura;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "criaturas_idiomas",
+            joinColumns = @JoinColumn(name = "fkIdCriatura", referencedColumnName = "idCriatura"),
+            inverseJoinColumns = @JoinColumn(name = "fkIdIdioma", referencedColumnName = "idIdioma"))
+    private List<Idioma> idiomas;
 }
